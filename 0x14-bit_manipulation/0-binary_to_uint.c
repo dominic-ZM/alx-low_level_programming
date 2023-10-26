@@ -40,13 +40,13 @@ unsigned int binary_to_uint(const char *b)
 	counter = 0;
 	result = 0;
 
-	for(; counter < size; counter++)
+	for (; counter < size; counter++)
 	{
 		if (*b == '1')
 			result += 1 << (size - (counter + 1));
 
 		b++;
 	}
-	
+
 	return (result);
 }
