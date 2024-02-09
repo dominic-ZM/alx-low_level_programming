@@ -1,0 +1,6 @@
+#ifndef _MAIN
+#define _MAIN
+
+void print_line(int n);
+
+#endif
