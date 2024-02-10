@@ -16,6 +16,9 @@ void print_square(int size)
 	int v_counter;
 	int h_counter;
 
+	if (size <= 0)
+		_putchar('\n');
+
 	v_counter = 0;
 
 	for (; v_counter < size; v_counter++)
