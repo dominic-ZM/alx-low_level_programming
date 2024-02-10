@@ -30,6 +30,7 @@ int main(void)
 		if (counter < 100)
 			printf(" ");
 	}
+	printf("\n");
 
 	return (0);
 }
