@@ -7,5 +7,6 @@ void print_diagonal(int n);
 void print_square(int size);
 int _putchar(char c);
 void print_triangle(int size);
+int _isComposite(int num);
 
 #endif
