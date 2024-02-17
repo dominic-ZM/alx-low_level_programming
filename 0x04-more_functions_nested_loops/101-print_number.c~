@@ -1,0 +1,50 @@
+#include "main.h"
+/**
+ * power - creates a number raised to a given power
+ * @base: the number to raise to some power
+ * @exponent: the power to raise by
+ *
+ * Return: the result of raising the number to given exponent
+ */
+
+double power(double base, int exponent)
+{
+	double result;
+
+	if (exponent < 0)
+		return (0);
+	if (exponent == 0)
+		return (1);
+
+	result = 1;
+
+	while (exponent > 0)
+	{
+		if (exponent & 1)
+			result *= base;
+
+		base *= base;
+		exponent >>= 1;
+	}
+
+	return (result);
+}
+
+/**
+ * print_number - prints an integer
+ * @n: the number to be printed
+ *
+ * Return: none
+ */
+
+void print_number(int n)
+{
+	if (n < 0)
+	{
+		_putchar('-');
+		n = n * -1;
+	}
+	if (n / 10 != 0)
+		print_number(n / 10);
+	_putchar(n % 10 + '0');
+}
