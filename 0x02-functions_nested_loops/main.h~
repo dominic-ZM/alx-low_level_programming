@@ -1,0 +1,8 @@
+#ifndef _MAIN
+#define _MAIN
+
+#include <stdio.h>
+
+void jack_bauer(void);
+
+#endif
