@@ -2,6 +2,7 @@
 #define _MAIN
 
 #include <stdio.h>
+#include <limits.h>
 
 void print_line(int n);
 void print_diagonal(int n);
