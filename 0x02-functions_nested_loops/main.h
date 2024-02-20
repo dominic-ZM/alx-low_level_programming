@@ -6,5 +6,6 @@
 void jack_bauer(void);
 int _putchar(char c);
 void times_table(void);
+void print_times_table(int n);
 
 #endif
