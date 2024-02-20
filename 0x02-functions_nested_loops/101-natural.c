@@ -17,7 +17,7 @@ int main(void)
 	factor_sum = 0;
 	num = 1;
 
-	for (; num < 10; num++)
+	for (; num < 1024; num++)
 	{
 		if (num % 3 == 0 || num % 5 == 0)
 			factor_sum = factor_sum + num;
