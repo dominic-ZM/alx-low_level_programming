@@ -1,28 +1,28 @@
 #include "main.h"
 
 /**
- * initialize - sets up a BigNumber in memory
+ * initialize - sets up a l_num in memory
  * @num: number to be setup
  *
  * Return: none
  */
 
-void initialize (struct BigNumber *num)
+void initialize(struct l_num *num)
 {
 	memset(num->digits, 0, MAX_DIGITS * sizeof(int));
 	num->length = 1;
 }
 
 /**
- * add - adds two BigNumbers
- * @result: the outcome of the operation
- * @num1: first BigNumber to add
- * @num2: second BigNumber to add
+ * add - adds two l_nums
+ * @res: the outcome of the operation
+ * @num1: first l_num to add
+ * @num2: second l_num to add
  *
  * Return: none
  */
 
-void add(struct BigNumber *result, const struct BigNumber *num1, const struct BigNumber *num2)
+void add(struct l_num *res, const struct l_num *num1, const struct l_num *num2)
 {
 	int carry;
 	int i;
@@ -34,13 +34,13 @@ void add(struct BigNumber *result, const struct BigNumber *num1, const struct Bi
 	for (; i >= 0; i--)
 	{
 		sum = num1->digits[i] + num2->digits[i] + carry;
-		result->digits[i] = sum % 10;
+		res->digits[i] = sum % 10;
 		carry = sum / 10;
 	}
-	result->length = MAX_DIGITS;
+	res->length = MAX_DIGITS;
 
-	while (result->length > 1 && result->digits[result->length -1] == 0)
-		result->length--;
+	while (res->length > 1 && res->digits[res->length - 1] == 0)
+		res->length--;
 }
 
 /**
@@ -52,7 +52,7 @@ void add(struct BigNumber *result, const struct BigNumber *num1, const struct Bi
 
 int main(void)
 {
-	struct BigNumber fib1, fib2, fib_next, sum;
+	struct l_num fib1, fib2, fib_next, sum;
 	int i;
 
 	initialize(&fib1);
@@ -72,8 +72,8 @@ int main(void)
 		}
 		if (fib_next.digits[MAX_DIGITS - 1] % 2 == 0)
 			add(&sum, &sum, &fib_next);
-		memcpy(&fib1, &fib2, sizeof(struct BigNumber));
-		memcpy(&fib2, &fib_next, sizeof(struct BigNumber));
+		memcpy(&fib1, &fib2, sizeof(struct l_num));
+		memcpy(&fib2, &fib_next, sizeof(struct l_num));
 	}
 	i = 0;
 
