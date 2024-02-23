@@ -1,4 +1,28 @@
 #include "main.h"
+/**
+ * test_upper_limit - tests if a number is greater than 4 million
+ * @num: the number to be tested
+ *
+ * Return: 1 true, 0 false
+ */
+
+int test_upper_limit(const struct l_num *num)
+{
+	int i;
+
+	if (num->digits[MAX_DIGITS - num->length] < 4)
+		return (0);
+	if (num->length < 6)
+		return (0);
+	i = MAX_DIGITS - num->length + 1;
+
+	for (; i < MAX_DIGITS; i++)
+	{
+		if (num->digits[i] != 0)
+			return (1);
+	}
+	return (0);
+}
 
 /**
  * initialize - sets up a l_num in memory
@@ -37,10 +61,16 @@ void add(struct l_num *res, const struct l_num *num1, const struct l_num *num2)
 		res->digits[i] = sum % 10;
 		carry = sum / 10;
 	}
-	res->length = MAX_DIGITS;
+	res->length = 0;
 
-	while (res->length > 1 && res->digits[res->length - 1] == 0)
-		res->length--;
+	for (; res->length < MAX_DIGITS; res->length++)
+	{
+		if (res->digits[0] != 0)
+		{
+			res->length = MAX_DIGITS;
+			break;
+		}
+	}
 }
 
 /**
@@ -65,11 +95,8 @@ int main(void)
 	while (1)
 	{
 		add(&fib_next, &fib1, &fib2);
-		if (fib_next.digits[MAX_DIGITS - fib_next.length] > 4)
-		{
-			if (fib_next.length > 6)
-				break;
-		}
+		if (test_upper_limit(&fib_next))
+			break;
 		if (fib_next.digits[MAX_DIGITS - 1] % 2 == 0)
 			add(&sum, &sum, &fib_next);
 		memcpy(&fib1, &fib2, sizeof(struct l_num));
