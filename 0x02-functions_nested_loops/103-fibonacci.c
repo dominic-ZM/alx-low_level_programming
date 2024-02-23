@@ -32,20 +32,26 @@ int test_upper_limit(const struct l_num *num)
  * @num: pointer to the array representing the number
  * @length: length of the array
  *
- * Description: This function prints the number represented by the array 'num'.
- * It starts from the most significant digit and prints each digit until the least significant one.
+ * Description: function prints the number represented by the array 'num'
+ * It starts from the most significant digit
+ * prints each digit until the least significant one.
+ *
+ * Return: none
  */
-void print_number(const int *num, int length) {
+void print_number(const int *num, int length)
+{
 	int i;
 
 	i = 0;
-	for (; i < MAX_DIGITS - length && num[i] == 0; i++);
+	for (; i < MAX_DIGITS - length && num[i] == 0; i++)
 
-	if (i == MAX_DIGITS) {
+	if (i == MAX_DIGITS)
+	{
 		printf("ka0\n");
 		return;
 	}
-	for (; i < MAX_DIGITS; i++) {
+	for (; i < MAX_DIGITS; i++)
+	{
 		printf("%d", num[i]);
 	}
 	printf("\n");
@@ -93,7 +99,7 @@ void add(struct l_num *res, const struct l_num *num1, const struct l_num *num2)
 		sum = num1->digits[i] + num2->digits[i] + carry;
 		res->digits[i] = sum % 10;
 		carry = sum / 10;
-		
+
 		length++;
 		if (i <= num1_length && i <= num2_length)
 			break;
