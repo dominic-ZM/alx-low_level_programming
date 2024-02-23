@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * test_upper_limit - tests if a number is greater than 4 million
  * @num: the number to be tested
@@ -10,18 +11,44 @@ int test_upper_limit(const struct l_num *num)
 {
 	int i;
 
-	if (num->digits[MAX_DIGITS - num->length] < 4)
-		return (0);
-	if (num->length < 6)
-		return (0);
-	i = MAX_DIGITS - num->length + 1;
-
-	for (; i < MAX_DIGITS; i++)
+	if (num->digits[MAX_DIGITS - num->length] >= 4)
 	{
-		if (num->digits[i] != 0)
-			return (1);
+		if (num->length >= 7)
+		{
+			i = MAX_DIGITS - num->length + 1;
+
+			for (; i < MAX_DIGITS; i++)
+			{
+				if (num->digits[i] != 0)
+				return (1);
+			}
+		}
 	}
 	return (0);
+}
+
+/**
+ * print_number - prints a number from its array representation
+ * @num: pointer to the array representing the number
+ * @length: length of the array
+ *
+ * Description: This function prints the number represented by the array 'num'.
+ * It starts from the most significant digit and prints each digit until the least significant one.
+ */
+void print_number(const int *num, int length) {
+	int i;
+
+	i = 0;
+	for (; i < MAX_DIGITS - length && num[i] == 0; i++);
+
+	if (i == MAX_DIGITS) {
+		printf("ka0\n");
+		return;
+	}
+	for (; i < MAX_DIGITS; i++) {
+		printf("%d", num[i]);
+	}
+	printf("\n");
 }
 
 /**
@@ -51,26 +78,32 @@ void add(struct l_num *res, const struct l_num *num1, const struct l_num *num2)
 	int carry;
 	int i;
 	int sum;
+	int length;
+	int num1_length;
+	int num2_length;
 
 	carry = 0;
 	i = MAX_DIGITS - 1;
+	num1_length = MAX_DIGITS - num1->length;
+	num2_length = MAX_DIGITS - num2->length;
+	length = 0;
 
 	for (; i >= 0; i--)
 	{
 		sum = num1->digits[i] + num2->digits[i] + carry;
 		res->digits[i] = sum % 10;
 		carry = sum / 10;
-	}
-	res->length = 0;
-
-	for (; res->length < MAX_DIGITS; res->length++)
-	{
-		if (res->digits[0] != 0)
-		{
-			res->length = MAX_DIGITS;
+		
+		length++;
+		if (i <= num1_length && i <= num2_length)
 			break;
-		}
 	}
+	if (carry > 0)
+	{
+		res->digits[i - 1] = carry;
+		length++;
+	}
+	res->length = length;
 }
 
 /**
@@ -83,7 +116,6 @@ void add(struct l_num *res, const struct l_num *num1, const struct l_num *num2)
 int main(void)
 {
 	struct l_num fib1, fib2, fib_next, sum;
-	int i;
 
 	initialize(&fib1);
 	initialize(&fib2);
@@ -102,10 +134,6 @@ int main(void)
 		memcpy(&fib1, &fib2, sizeof(struct l_num));
 		memcpy(&fib2, &fib_next, sizeof(struct l_num));
 	}
-	i = 0;
-
-	for (; i < sum.length; i++)
-		printf("%d", sum.digits[i]);
-	printf("\n");
+	print_number(sum.digits, sum.length);
 	return (0);
 }
