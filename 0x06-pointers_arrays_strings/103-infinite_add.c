@@ -35,7 +35,7 @@ char *reverse_string(char *str)
  * Return: pointer to result buffer
  * 0 if result cannot be stored in buffer
  */
- 
+
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
 	int carry, index, len1, len2, digit1, digit2, sum;
@@ -56,8 +56,10 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		r[index++] = (sum % 10) + '0';
 		carry = sum / 10;
 
-		if (len1 > 0) len1--;
-		if (len2 > 0) len2--;
+		if (len1 > 0)
+			len1--;
+		if (len2 > 0)
+			len2--;
 	}
 	r[index] = '\0';
 
