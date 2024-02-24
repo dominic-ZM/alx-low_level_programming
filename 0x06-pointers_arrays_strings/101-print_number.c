@@ -7,10 +7,16 @@
 
 void print_number(int n)
 {
+	if (n == INT_MIN)
+	{
+		print_number(INT_MAX / 10);
+		print_number(8);
+		return;
+	}
 	if (n < 0)
 	{
 		_putchar('-');
-		n = -n;
+		n = abs(n);
 	}
 
 	if (n / 10 != 0)

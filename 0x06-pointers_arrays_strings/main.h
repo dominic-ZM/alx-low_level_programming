@@ -4,6 +4,8 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
+#include <limits.h>
+#include <stdlib.h>
 
 char *cap_string(char *str);
 char *leet(char *);
