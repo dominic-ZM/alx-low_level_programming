@@ -9,6 +9,7 @@ void print_number(int n)
 {
 	if (n == INT_MIN)
 	{
+		_putchar('-');
 		print_number(INT_MAX / 10);
 		print_number(8);
 		return;
