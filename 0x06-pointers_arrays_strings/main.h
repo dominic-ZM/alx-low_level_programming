@@ -6,5 +6,6 @@
 #include <string.h>
 
 char *cap_string(char *str);
+char *leet(char *);
 
 #endif
