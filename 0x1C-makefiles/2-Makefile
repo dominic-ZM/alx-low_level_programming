@@ -4,8 +4,4 @@ OBJ := $(SRC:%.c=%.o)
 NAME := school
 
 all: $(OBJ)
-	$(CC) $(OBJ) -o school
-
-%.o: %.c
-	@echo "$(CC) -c -o $@ $<"
-	$(CC) -c $< -o $@
+	$(CC) $(OBJ) -o $(NAME)
