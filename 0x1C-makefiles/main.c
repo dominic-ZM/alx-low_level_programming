@@ -5,3 +5,4 @@ int main(void)
 	printf("nothing\n");
 	return (0);
 }
+/* School */
